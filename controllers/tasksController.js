@@ -17,7 +17,14 @@ const postTask = ({body}, res) => {
     }
 };
 
+const editTask = ({params: {id}, body}, res) => {
+    const taskIndex = tasksData.findIndex(task => task.id === id);
+    tasksData[taskIndex] = body;
+    res.send({success: true});
+};
+
 module.exports = {
     getAllTasks, 
-    postTask
+    postTask, 
+    editTask
 };
