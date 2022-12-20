@@ -8,6 +8,13 @@ const getAllTasks = (req, res) => {
     })
 };
 
+const getSearchedTasks = ({params: {searchValue}}, res) => {
+    const data = tasksData.filter(task => task.resume.includes(searchValue));
+    console.log(tasksData);
+    console.log(data);
+    res.send({data});
+}
+
 const postTask = ({body}, res) => {
     if (isTaskValid(body)) {
         tasksData.push(body);
@@ -26,5 +33,6 @@ const editTask = ({params: {id}, body}, res) => {
 module.exports = {
     getAllTasks, 
     postTask, 
-    editTask
+    editTask, 
+    getSearchedTasks
 };
